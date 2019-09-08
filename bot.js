@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 
 const countries = require("./countries.json");
-const auth = require("./auth.json");
+//const auth = require("./auth.json");
 
 const { HLTV } = require("hltv");
 
@@ -98,4 +98,4 @@ client.on("message", message => {
     }
 })
 
-client.login(auth.token);
+client.login(process.env.BOT_TOKEN);
