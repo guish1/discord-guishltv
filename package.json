@@ -1,0 +1,14 @@
+{
+    "name": "GUISHLTV",
+    "version": "1.0.0",
+    "description": "Unofficial bot for HLTV records",
+    "main": "bot.js",
+    "author": "Maxime 'gu1sh' LEBON",
+    "scripts": {
+        "start": "node bot.js"
+    },
+    "dependencies": {
+        "discord.js": "github:discordjs/discord.js",
+        "hltv": "^2.16.1"
+    }
+}
