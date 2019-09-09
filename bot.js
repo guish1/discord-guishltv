@@ -42,7 +42,6 @@ client.on("message", message => {
             (async function () {
                 const res = await HLTV.getResults({pages: 1});
                 var embed = createEmbed("HLTV - LAST 5 RECORDS");
-                var html = "";
                 for (var i = 0; i < 5; i++) {
                     // get teams informations
                     const team1 = await getTeam(res[i].team1.id);
@@ -90,10 +89,10 @@ client.on("message", message => {
                 message.channel.send({embed});
             })();
             break;
-            case "team":
-            HLTV.getTeam({id: 4494}).then(flag => { 
-                console.log(flag);
-            });
+            case "commands":
+                var embed = createEmbed("GUISHLTV - Commands");
+                embed.addField("!results", "Display last 5 world records");
+                message.channel.send({embed});
             break;
         }
     }
