@@ -73,12 +73,12 @@ client.on("message", message => {
                     var team2Rank = (typeof team2.rank != "undefined") ? "(#"+team2.rank+")" : "";
                     // get final score
                     var scores = (res[i].result).split(" - ");
-                    scores[0] = parseInt(scores[0]); 
-                    scores[1] = parseInt(scores[1]);
+                    var team1Score = parseInt(scores[0]); 
+                    var team2Score = parseInt(scores[1]);
                     // set front display with formatted team informations
                     // as [FLAG + NAME + RANK + SCORE] - [SCORE + FLAG + NAME + RANK]
-                    var team1Front = flag1 + team1Name+" "+team1Rank+""+scores[0];
-                    var team2Front = scores[1]+" "+flag2 + team2Name+" "+team2Rank;
+                    var team1Front = flag1 + team1Name+" "+team1Rank+""+team1Score;
+                    var team2Front = team2Score+" "+flag2 + team2Name+" "+team2Rank;
                     // set bold text for winner
                     var team1State = (scores[0] > scores[1]) ? "**"+team1Front+"**" : team1Front;
                     var team2State = (scores[0] < scores[1]) ? "**"+team2Front+"**" : team2Front;
