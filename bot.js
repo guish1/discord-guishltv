@@ -85,7 +85,6 @@ client.on("message", message => {
                     embed.addField("\u200b", team1State + " - " + team2State + "\n" + res[i].event.name, true);
                     embed.addField("\n\u200b", "\n" + maps_score, true);
                 }
-                embed.addBlankField(false);
                 message.channel.send({embed});
             })();
             break;
