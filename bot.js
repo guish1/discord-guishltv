@@ -85,7 +85,6 @@ client.on("message", message => {
                     var team1State = (scores[0] > scores[1]) ? "**"+team1Front+"**" : team1Front;
                     var team2State = (scores[0] < scores[1]) ? "**"+team2Front+"**" : team2Front;
                     embed.addField("----", team1State + " - " + team2State, true);
-                    embed.addField("\n\u200b", "-----", true);
                     embed.addField("\n\u200b", res[i].event.name, true);
                     embed.addField("\n\u200b", maps_score, true);
                 }
