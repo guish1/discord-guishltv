@@ -49,20 +49,20 @@ client.on("message", message => {
 
                     // get scores from each map
                     const score = await getMatch(res[i].id);
-                    var maps_score = "";
+                    var mapsScore = "";
                     var count = 0;
                     for (var j = 0; j < (score.maps).length; j++) {
                         var r = (score.maps[j].result).split(" (");
-                        if (count != (score.maps).length && r[0] != "" && j != 0) maps_score += " / ";
-                        maps_score += r[0];
-                        if (maps_score == "") maps_score += "1 map from WB";
+                        if (count != (score.maps).length && r[0] != "" && j != 0) mapsScore += " / ";
+                        mapsScore += r[0];
+                        if (mapsScore == "") mapsScore += "1 map from WB";
                         count += 1;
                     }
-                    if (maps_score == "") maps_score = "N/A";
+                    if (mapsScore == "") mapsScore = "N/A";
 
                     // get team flag
-                    var flag1 = (typeof countries[team1.location] != "undefined") ? "\:flag_"+ countries[team1.location] +": " : "";
-                    var flag2 = (typeof countries[team2.location] != "undefined") ? "\:flag_"+ countries[team2.location] +": " : "";
+                    var flag1 = (typeof countries[team1.location] != "undefined") ? "\:flag_"+countries[team1.location]+": " : "";
+                    var flag2 = (typeof countries[team2.location] != "undefined") ? "\:flag_"+countries[team2.location]+": " : "";
                     // get team name, format one for external URL and truncate one to prevent wrong display
                     var team1NameFormatted = (res[i].team1.name).replace(/\s+/g, '-').toLowerCase();
                     var team2NameFormatted = (res[i].team2.name).replace(/\s+/g, '-').toLowerCase();
@@ -83,7 +83,7 @@ client.on("message", message => {
                     var team1State = (scores[0] > scores[1]) ? "**"+team1Front+"**" : team1Front;
                     var team2State = (scores[0] < scores[1]) ? "**"+team2Front+"**" : team2Front;
                     embed.addField("\u200b", team1State + " - " + team2State + "\n" + res[i].event.name, true);
-                    embed.addField("\n\u200b", "\n" + maps_score, true);
+                    embed.addField("\n\u200b", "\n" + mapsScore, true);
                 }
                 message.channel.send({embed});
             })();
