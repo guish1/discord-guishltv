@@ -90,6 +90,7 @@ client.on("message", message => {
             break;
             case "commands":
                 var embed = createEmbed("GUISHLTV - Commands");
+                embed.addBlankField(true);
                 embed.addField("!results", "Display last 5 world records");
                 message.channel.send({embed});
             break;
