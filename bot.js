@@ -10,6 +10,7 @@ var createEmbed = (title) => {
     var embed = new Discord.MessageEmbed()
     .setColor(0x00AE86)
     .setTitle(title)
+    .setImage("//cdn.discordapp.com/avatars/618509524881637386/1e8e01142b387ac4ac66a0ea5a8dfb17.png?size=256")
     .setFooter("© Powered by GUISH 2019 - Unofficial HLTV Bot")
     .setTimestamp();
     return embed;
@@ -66,8 +67,8 @@ client.on("message", message => {
                     // get team name, format one for external URL and truncate one to prevent wrong display
                     var team1NameFormatted = (res[i].team1.name).replace(/\s+/g, '-').toLowerCase();
                     var team2NameFormatted = (res[i].team2.name).replace(/\s+/g, '-').toLowerCase();
-                    var team1Name = "["+truncateString(res[i].team1.name, 10)+"](https://www.hltv.org/team/"+res[i].team1.id+"/"+team1NameFormatted+")";
-                    var team2Name = "["+truncateString(res[i].team2.name, 10)+"](https://www.hltv.org/team/"+res[i].team2.id+"/"+team2NameFormatted+")";
+                    var team1Name = "["+truncateString(res[i].team1.name, 10)+"](https://www.hltv.org/team/"+res[i].team1.id+"/"+team1NameFormatted+" '"+res[i].team1.name+" (id: "+res[i].team1.id+")')";
+                    var team2Name = "["+truncateString(res[i].team2.name, 10)+"](https://www.hltv.org/team/"+res[i].team2.id+"/"+team2NameFormatted+" '"+res[i].team2.name+" (id: "+res[i].team2.id+")')";
                     // get team rank
                     var team1Rank = (typeof team1.rank != "undefined") ? "(#"+team1.rank+") " : "";
                     var team2Rank = (typeof team2.rank != "undefined") ? "(#"+team2.rank+")" : "";
