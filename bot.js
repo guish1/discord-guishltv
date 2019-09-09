@@ -65,9 +65,11 @@ client.on("message", message => {
                     // get team flag
                     var flag1 = (typeof countries[team1.location] != "undefined") ? "\:flag_"+ countries[team1.location] +": " : "";
                     var flag2 = (typeof countries[team2.location] != "undefined") ? "\:flag_"+ countries[team2.location] +": " : "";
-                    // get team name and truncate to prevent wrong display
-                    var team1Name = truncateString(res[i].team1.name, 10);
-                    var team2Name = truncateString(res[i].team2.name, 10);
+                    // get team name, format one for external URL and truncate one to prevent wrong display
+                    var team1NameFormatted = res[i].team1.name.replace(/\s+/g, '-').toLowerCase();
+                    var team2NameFormatted = res[i].team2.name.replace(/\s+/g, '-').toLowerCase();
+                    var team1Name = "[" + truncateString(res[i].team1.name, 10) + "](https://www.hltv.org/team/"+res[i].team1.id+"/"+team1NameFormatted+")";
+                    var team2Name = "[" + truncateString(res[i].team2.name, 10) + "](https://www.hltv.org/team/"+res[i].team2.id+"/"+team2NameFormatted+")";
                     // get team rank
                     var team1Rank = (typeof team1.rank != "undefined") ? "(#"+team1.rank+") " : "";
                     var team2Rank = (typeof team2.rank != "undefined") ? "(#"+team2.rank+")" : "";
