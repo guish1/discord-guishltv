@@ -84,7 +84,7 @@ client.on("message", message => {
                     var team1State = (scores[0] > scores[1]) ? "**"+team1Front+"**" : team1Front;
                     var team2State = (scores[0] < scores[1]) ? "**"+team2Front+"**" : team2Front;
                     embed.addField("\u200b", team1State + " - " + team2State + "\n" + res[i].event.name, true);
-                    embed.addField("\n\u200b", maps_score, true);
+                    embed.addField("\n\u200b", "\n" + maps_score, true);
                 }
                 embed.addBlankField(false);
                 message.channel.send({embed});
