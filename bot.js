@@ -39,6 +39,18 @@ client.on("message", message => {
         var command = args[0];
         args = args.splice(1);
         switch(command) {
+            case "commands": case "start":
+                var embed = createEmbed("GUISHLTV - Commands");
+                embed.addBlankField(true);
+                embed.addField("!results", "Display last 5 world records");
+                message.channel.send({embed});
+            break;
+            case "ranking":
+            (async function () {
+                console.log(args);
+                //const res = await HLTV.getResults({pages: 1});
+            })();
+            break;
             case "results":
             (async function () {
                 const res = await HLTV.getResults({pages: 1});
@@ -92,13 +104,6 @@ client.on("message", message => {
                 embed.addBlankField(true);
                 message.channel.send({embed});
             })();
-            break;
-            case "commands":
-            case "start":
-                var embed = createEmbed("GUISHLTV - Commands");
-                embed.addBlankField(true);
-                embed.addField("!results", "Display last 5 world records");
-                message.channel.send({embed});
             break;
         }
     }
