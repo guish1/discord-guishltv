@@ -6,13 +6,12 @@ const countries = require("./countries.json");
 
 const { HLTV } = require("hltv");
 
-var createEmbed = (title, description) => {
+var createEmbed = (title) => {
     if (typeof description == "undefined") description = "";
     var embed = new Discord.MessageEmbed()
     .setColor(0x00AE86)
     .setTitle(" ")
     .setAuthor("GUISHLTV - "+title, "https://i.imgur.com/G34L4R7.png", "https://www.avisdetemplate.fr")
-    .setDescription(description)
     .setFooter("© Powered by GUISH 2019 - Unofficial HLTV Bot")
     .setTimestamp();
     return embed;
@@ -52,7 +51,7 @@ client.on("message", message => {
             (async function () {
                 if (args[0] == "team") {
                     const res = await HLTV.getTeamRanking();
-                    var top5 = ""; var top6_30 = "";
+                    var top5 = ""; var top15 = ""; var top30 = "";
                     for(var i = 0; i < res.length; i++) {
                         // get teams informations
                         const team = await getTeam(res[i].team.id);
@@ -63,10 +62,13 @@ client.on("message", message => {
                         var teamName = "["+res[i].team.name+"](https://www.hltv.org/team/"+res[i].team.id+"/"+teamNameFormatted+" 'id: "+res[i].team.id+"')";
                         var teamFront = "#"+res[i].place+". "+flag+""+teamName+" ("+res[i].points+" pts)";
                         if (i < 5) top5 += teamFront+"\n";
-                        else top6_30 += teamFront+"\n";
+                        else if (i > 4 && i < 15) top15 += teamFront+"\n";
+                        else if (i > 14 && i < 30) top30 += teamFront+\n";
                     }
-                    var embed = createEmbed("Top 30 Team ranking", top5);
-                    embed.addField("\u200b", top6_30);
+                    var embed = createEmbed("Top 30 Team ranking");
+                    embed.addField("\u200b", top5);
+                    embed.addField("\u200b", top15);
+                    embed.addField("\u200b", top30);
                     embed.addBlankField(true);
                     message.channel.send({embed});
                 }
