@@ -93,6 +93,7 @@ client.on("message", message => {
             })();
             break;
             case "commands":
+            case "start":
                 var embed = createEmbed("GUISHLTV - Commands");
                 embed.addBlankField(true);
                 embed.addField("!results", "Display last 5 world records");
