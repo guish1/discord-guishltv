@@ -10,7 +10,7 @@ var createEmbed = (title) => {
     var embed = new Discord.MessageEmbed()
     .setColor(0x00AE86)
     .setTitle(title)
-    .setAuthor("GUISHLTV" , "https://lh3.googleusercontent.com/T8V2KTSOci11-zDJf77kuLQGIwpDvZUQEeSpnILl6f9sZD_icTRhJuus7aPo1Ppkmg", "www.avisdetemplate.fr")
+    .setAuthor("GUISHLTV" , "https://is1-ssl.mzstatic.com/image/thumb/Purple128/v4/33/54/b0/3354b09c-ccb5-7bd4-5cd4-f71cc1964406/AppIcon-1x_U007emarketing-85-220-5.png/246x0w.jpg", "www.avisdetemplate.fr")
     .setFooter("© Powered by GUISH 2019 - Unofficial HLTV Bot")
     .setTimestamp();
     return embed;
