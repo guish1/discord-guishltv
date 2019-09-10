@@ -9,8 +9,8 @@ const { HLTV } = require("hltv");
 var createEmbed = (title) => {
     var embed = new Discord.MessageEmbed()
     .setColor(0x00AE86)
-    .setTitle(title)
-    .setAuthor("GUISHLTV", "https://i.imgur.com/G34L4R7.png", "https://www.avisdetemplate.fr")
+    .setTitle(" ")
+    .setAuthor("GUISHLTV - "+title, "https://i.imgur.com/G34L4R7.png", "https://www.avisdetemplate.fr")
     .setFooter("© Powered by GUISH 2019 - Unofficial HLTV Bot")
     .setTimestamp();
     return embed;
@@ -42,7 +42,7 @@ client.on("message", message => {
             case "results":
             (async function () {
                 const res = await HLTV.getResults({pages: 1});
-                var embed = createEmbed("HLTV - Last 5 world records");
+                var embed = createEmbed("Last 5 world records");
                 embed.addBlankField(true);
                 for (var i = 0; i < 5; i++) {
                     // get teams informations
