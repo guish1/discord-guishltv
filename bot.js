@@ -61,7 +61,7 @@ client.on("message", message => {
                         var teamNameFormatted = (res[i].team.name).replace(/\s+/g, '-').toLowerCase();
                         var teamName = "["+res[i].team.name+"](https://www.hltv.org/team/"+res[i].team.id+"/"+teamNameFormatted+" 'id: "+res[i].team.id+"')";
                         var teamFront = "#"+res[i].place+". "+flag+""+teamName+" ("+res[i].points+" pts)";
-                        embed.addField("\u200b", teamFront);
+                        embed.addField("\u200b", teamFront, true);
                     }
                     embed.addBlankField(true);
                     message.channel.send({embed});
@@ -116,8 +116,7 @@ client.on("message", message => {
                     var team2State = (team1Score < team2Score) ? "**"+team2Front+"**" : team2Front;
                     // get format event name
                     var eventNameFormatted = (res[i].event.name).replace(/\s+/g, '-').toLowerCase();
-                    //embed.addField("\u200b", team1State + " - " + team2State + "\n[" + res[i].event.name + "](https://www.hltv.org/events/"+res[i].event.id+"/"+eventNameFormatted+" 'id: "+res[i].event.id+"')", true);
-                    //embed.addField("\u200b", "\n" + mapsScore, true);
+
                     embed.addField("\u200b", team1State+" - "+team2State+"\n["+res[i].event.name+"](https://www.hltv.org/events/"+res[i].event.id+"/"+eventNameFormatted+" 'id: "+res[i].event.id+"') - "+mapsScore);
                 }
                 embed.addBlankField(true);
