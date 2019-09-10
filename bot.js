@@ -6,12 +6,11 @@ const countries = require("./countries.json");
 
 const { HLTV } = require("hltv");
 
-var createEmbed = (title, description) => {
+var createEmbed = (title) => {
     var embed = new Discord.MessageEmbed()
     .setColor(0x00AE86)
     .setTitle(" ")
     .setAuthor("GUISHLTV - "+title, "https://i.imgur.com/G34L4R7.png", "https://www.avisdetemplate.fr")
-    .setDescription(description)
     .setFooter("© Powered by GUISH 2019 - Unofficial HLTV Bot")
     .setTimestamp();
     return embed;
@@ -41,9 +40,10 @@ client.on("message", message => {
         args = args.splice(1);
         switch(command) {
             case "commands": case "start":
-                var embed = createEmbed("GUISHLTV - Commands", "");
+                var embed = createEmbed("GUISHLTV - Commands");
                 embed.addBlankField(true);
                 embed.addField("!results", "Display last 5 world records");
+                embed.addField("!ranking team", "Display top 30 team ranking");
                 message.channel.send({embed});
             break;
             case "ranking":
