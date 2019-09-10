@@ -81,8 +81,8 @@ client.on("message", message => {
                     var team1Front = flag1 + team1Name+" "+team1Rank+""+team1Score;
                     var team2Front = team2Score+" "+flag2 + team2Name+" "+team2Rank;
                     // set bold text for winner
-                    var team1State = (team1Front > team2Score) ? "**"+team1Front+"**" : team1Front;
-                    var team2State = (team1Front < team2Score) ? "**"+team2Front+"**" : team2Front;
+                    var team1State = (team1Score > team2Score) ? "**"+team1Front+"**" : team1Front;
+                    var team2State = (team1Score < team2Score) ? "**"+team2Front+"**" : team2Front;
                     embed.addField("\u200b", team1State + " - " + team2State + "\n" + res[i].event.name + "(id: "+res[i].event.id+")", true);
                     embed.addField("\n\u200b", "\n" + mapsScore, true);
                 }
