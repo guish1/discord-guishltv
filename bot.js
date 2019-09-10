@@ -6,11 +6,12 @@ const countries = require("./countries.json");
 
 const { HLTV } = require("hltv");
 
-var createEmbed = (title) => {
+var createEmbed = (title, description) => {
     var embed = new Discord.MessageEmbed()
     .setColor(0x00AE86)
     .setTitle(" ")
     .setAuthor("GUISHLTV - "+title, "https://i.imgur.com/G34L4R7.png", "https://www.avisdetemplate.fr")
+    .setDescription(description)
     .setFooter("© Powered by GUISH 2019 - Unofficial HLTV Bot")
     .setTimestamp();
     return embed;
@@ -40,7 +41,7 @@ client.on("message", message => {
         args = args.splice(1);
         switch(command) {
             case "commands": case "start":
-                var embed = createEmbed("GUISHLTV - Commands");
+                var embed = createEmbed("GUISHLTV - Commands", "");
                 embed.addBlankField(true);
                 embed.addField("!results", "Display last 5 world records");
                 message.channel.send({embed});
@@ -50,7 +51,16 @@ client.on("message", message => {
                 console.log(args);
                 if (args[0] == "team") {
                     const res = await HLTV.getTeamRanking();
-                    console.log(res);
+                    var html = "";
+                    for(var i = 0; i < res.length; i++) {
+                        var change = (parseInt(res[i].change) > 0) ? "+"+res[i].change : res[i].change;
+                        change = (change != 0) ? change : "";
+                        html += "#"+res[i].place+". "+res[i].team.name+" ("+res[i].points+" pts) "+change+";
+                        html += "\n";
+                    }
+                    var embed = createEmbed("Top 30 Team ranking");                  
+                    embed.addBlankField(true);
+                    message.channel.send({embed});
                 }
                 else if (args[0] == "player") {
                 }
