@@ -48,7 +48,6 @@ client.on("message", message => {
             break;
             case "ranking":
             (async function () {
-                console.log(args);
                 if (args[0] == "team") {
                     const res = await HLTV.getTeamRanking();
                     var html = "";
@@ -56,7 +55,8 @@ client.on("message", message => {
                         html += "#"+res[i].place+". "+res[i].team.name+" ("+res[i].points+" pts)";
                         html += "\n";
                     }
-                    var embed = createEmbed("Top 30 Team ranking");                  
+                    var embed = createEmbed("Top 30 Team ranking");
+                    embed.addField("\u200b", html);
                     embed.addBlankField(true);
                     message.channel.send({embed});
                 }
