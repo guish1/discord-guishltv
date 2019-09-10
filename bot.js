@@ -63,7 +63,7 @@ client.on("message", message => {
                         var teamFront = "#"+res[i].place+". "+flag+""+teamName+" ("+res[i].points+" pts)";
                         if (i < 5) top5 += teamFront+"\n";
                         else if (i > 4 && i < 15) top15 += teamFront+"\n";
-                        else if (i > 14 && i < 30) top30 += teamFront+\n";
+                        else if (i > 14 && i < 30) top30 += teamFront+"\n";
                     }
                     var embed = createEmbed("Top 30 Team ranking");
                     embed.addField("\u200b", top5);
