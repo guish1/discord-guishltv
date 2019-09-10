@@ -10,7 +10,7 @@ var createEmbed = (title) => {
     var embed = new Discord.MessageEmbed()
     .setColor(0x00AE86)
     .setTitle(title)
-    .setImage("https://lh3.googleusercontent.com/T8V2KTSOci11-zDJf77kuLQGIwpDvZUQEeSpnILl6f9sZD_icTRhJuus7aPo1Ppkmg")
+    .setAuthor("GUISHLTV" , "https://lh3.googleusercontent.com/T8V2KTSOci11-zDJf77kuLQGIwpDvZUQEeSpnILl6f9sZD_icTRhJuus7aPo1Ppkmg", "www.avisdetemplate.fr")
     .setFooter("© Powered by GUISH 2019 - Unofficial HLTV Bot")
     .setTimestamp();
     return embed;
@@ -84,7 +84,7 @@ client.on("message", message => {
                     var team1State = (team1Score > team2Score) ? "**"+team1Front+"**" : team1Front;
                     var team2State = (team1Score < team2Score) ? "**"+team2Front+"**" : team2Front;
                     embed.addField("\u200b", team1State + " - " + team2State + "\n" + res[i].event.name + "(id: "+res[i].event.id+")", true);
-                    embed.addField("\n\u200b", "\n" + mapsScore, true);
+                    embed.addField("\u200b", "\n" + mapsScore, true);
                 }
                 message.channel.send({embed});
             })();
