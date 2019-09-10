@@ -85,8 +85,9 @@ client.on("message", message => {
                     var team2State = (team1Score < team2Score) ? "**"+team2Front+"**" : team2Front;
                     // get format event name
                     var eventNameFormatted = (res[i].event.name).replace(/\s+/g, '-').toLowerCase();
-                    embed.addField("\u200b", team1State + " - " + team2State + "\n[" + res[i].event.name + "](https://www.hltv.org/events/"+res[i].event.id+"/"+eventNameFormatted+" 'id: "+res[i].event.id+"')", true);
-                    embed.addField("\u200b", "\n" + mapsScore, true);
+                    //embed.addField("\u200b", team1State + " - " + team2State + "\n[" + res[i].event.name + "](https://www.hltv.org/events/"+res[i].event.id+"/"+eventNameFormatted+" 'id: "+res[i].event.id+"')", true);
+                    //embed.addField("\u200b", "\n" + mapsScore, true);
+                    embed.addField(team1State + " - " + team2State, "[" + res[i].event.name + "](https://www.hltv.org/events/"+res[i].event.id+"/"+eventNameFormatted+" 'id: "+res[i].event.id+"') - " + mapsScore);
                 }
                 message.channel.send({embed});
             })();
