@@ -52,7 +52,14 @@ client.on("message", message => {
                     const res = await HLTV.getTeamRanking();
                     var html = "";
                     for(var i = 0; i < res.length; i++) {
-                        html += "#"+res[i].place+". "+res[i].team.name+" ("+res[i].points+" pts)";
+                        // get teams informations
+                        const team = await getTeam(res[i].team.id);
+                        // get team flag
+                        var flag = (typeof countries[team.location] != "undefined") ? "\:flag_"+countries[team.location]+": " : "";
+                        // get team name, format one for external URL and truncate one to prevent wrong display
+                        var teamNameFormatted = (res[i].team.name).replace(/\s+/g, '-').toLowerCase();
+                        var teamName = "["+res[i].team.name+"](https://www.hltv.org/team/"+res[i].team.id+"/"+teamNameFormatted+" 'id: "+res[i].team.id+"')";
+                        html += "#"+res[i].place+". "+flag+""+teamName+" ("+res[i].points+" pts)";
                         html += "\n";
                     }
                     var embed = createEmbed("Top 30 Team ranking");
