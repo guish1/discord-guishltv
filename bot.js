@@ -10,7 +10,7 @@ var createEmbed = (title) => {
     var embed = new Discord.MessageEmbed()
     .setColor(0x00AE86)
     .setTitle(title)
-    .setImage("//cdn.discordapp.com/avatars/618509524881637386/1e8e01142b387ac4ac66a0ea5a8dfb17.png?size=256")
+    .setImage("https://lh3.googleusercontent.com/T8V2KTSOci11-zDJf77kuLQGIwpDvZUQEeSpnILl6f9sZD_icTRhJuus7aPo1Ppkmg")
     .setFooter("© Powered by GUISH 2019 - Unofficial HLTV Bot")
     .setTimestamp();
     return embed;
