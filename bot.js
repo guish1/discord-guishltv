@@ -57,7 +57,7 @@ client.on("message", message => {
                         const team = await getTeam(res[i].team.id);
                         // get team flag
                         var flag = (typeof countries[team.location] != "undefined") ? "\:flag_"+countries[team.location]+": " : "";
-                        // get team name, format one for external URL and truncate one to prevent wrong display
+                        // get team name, format one for external URL
                         var teamNameFormatted = (res[i].team.name).replace(/\s+/g, '-').toLowerCase();
                         var teamName = "["+res[i].team.name+"](https://www.hltv.org/team/"+res[i].team.id+"/"+teamNameFormatted+" 'id: "+res[i].team.id+"')";
                         var teamFront = "#"+res[i].place+". "+flag+""+teamName+" ("+res[i].points+" pts)";
@@ -96,7 +96,7 @@ client.on("message", message => {
                     // get team flag
                     var flag1 = (typeof countries[team1.location] != "undefined") ? "\:flag_"+countries[team1.location]+": " : "";
                     var flag2 = (typeof countries[team2.location] != "undefined") ? "\:flag_"+countries[team2.location]+": " : "";
-                    // get team name, format one for external URL and truncate one to prevent wrong display
+                    // get team name, format one for external URL
                     var team1NameFormatted = (res[i].team1.name).replace(/\s+/g, '-').toLowerCase();
                     var team2NameFormatted = (res[i].team2.name).replace(/\s+/g, '-').toLowerCase();
                     var team1Name = "["+res[i].team1.name+"](https://www.hltv.org/team/"+res[i].team1.id+"/"+team1NameFormatted+" 'id: "+res[i].team1.id+"')";
