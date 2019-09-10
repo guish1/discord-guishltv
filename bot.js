@@ -62,7 +62,7 @@ client.on("message", message => {
                         var teamName = "["+res[i].team.name+"](https://www.hltv.org/team/"+res[i].team.id+"/"+teamNameFormatted+" 'id: "+res[i].team.id+"')";
                         var teamFront = "#"+res[i].place+". "+flag+""+teamName+" ("+res[i].points+" pts)";
                         embed.addField("\u200b", teamFront+"\n", true);
-                        embed.addfield("\u200b", "\n\u200b", true);
+                        embed.addField("\u200b", "\n\u200b", true);
                     }
                     embed.addBlankField(true);
                     message.channel.send({embed});
