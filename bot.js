@@ -43,7 +43,6 @@ client.on("message", message => {
             (async function () {
                 const res = await HLTV.getResults({pages: 1});
                 var embed = createEmbed("Last 5 world records");
-                embed.addBlankField(true);
                 for (var i = 0; i < 5; i++) {
                     // get teams informations
                     const team1 = await getTeam(res[i].team1.id);
