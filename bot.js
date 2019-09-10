@@ -11,7 +11,7 @@ var createEmbed = (title) => {
     .setColor(0x00AE86)
     .setTitle(title)
     .setAuthor("GUISHLTV", "https://i.imgur.com/G34L4R7.png", "https://www.avisdetemplate.fr")
-    .setFooter("\n© Powered by GUISH 2019 - Unofficial HLTV Bot")
+    .setFooter("© Powered by GUISH 2019 - Unofficial HLTV Bot")
     .setTimestamp();
     return embed;
 }
@@ -43,6 +43,7 @@ client.on("message", message => {
             (async function () {
                 const res = await HLTV.getResults({pages: 1});
                 var embed = createEmbed("HLTV - Last 5 world records");
+                embed.addBlankField(true);
                 for (var i = 0; i < 5; i++) {
                     // get teams informations
                     const team1 = await getTeam(res[i].team1.id);
@@ -89,6 +90,7 @@ client.on("message", message => {
                     //embed.addField("\u200b", "\n" + mapsScore, true);
                     embed.addField(team1State+" - "+team2State, "["+res[i].event.name+"](https://www.hltv.org/events/"+res[i].event.id+"/"+eventNameFormatted+" 'id: "+res[i].event.id+"') - "+mapsScore);
                 }
+                embed.addBlankField(true);
                 message.channel.send({embed});
             })();
             break;
