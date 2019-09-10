@@ -48,7 +48,12 @@ client.on("message", message => {
             case "ranking":
             (async function () {
                 console.log(args);
-                //const res = await HLTV.getResults({pages: 1});
+                if (args[0] == "team") {
+                    const res = await HLTV.getTeamRanking();
+                    console.log(res);
+                }
+                else if (args[0] == "player") {
+                }
             })();
             break;
             case "results":
