@@ -53,9 +53,7 @@ client.on("message", message => {
                     const res = await HLTV.getTeamRanking();
                     var html = "";
                     for(var i = 0; i < res.length; i++) {
-                        var change = (parseInt(res[i].change) > 0) ? "+"+res[i].change : res[i].change;
-                        change = (change != 0) ? change : "";
-                        html += "#"+res[i].place+". "+res[i].team.name+" ("+res[i].points+" pts) "+change+";
+                        html += "#"+res[i].place+". "+res[i].team.name+" ("+res[i].points+" pts)";
                         html += "\n";
                     }
                     var embed = createEmbed("Top 30 Team ranking");                  
