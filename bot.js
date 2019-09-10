@@ -66,6 +66,7 @@ client.on("message", message => {
                         else if (i > 14 && i < 30) top30 += teamFront+"\n";
                     }
                     var embed = createEmbed("Top 30 Team ranking");
+                    console.log(top5.length);
                     embed.addField("\u200b", top5);
                     embed.addField("\u200b", top15);
                     embed.addField("\u200b", top30);
