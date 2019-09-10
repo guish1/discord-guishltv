@@ -83,7 +83,7 @@ client.on("message", message => {
                     // set bold text for winner
                     var team1State = (team1Score > team2Score) ? "**"+team1Front+"**" : team1Front;
                     var team2State = (team1Score < team2Score) ? "**"+team2Front+"**" : team2Front;
-                    embed.addField("\u200b", team1State + " - " + team2State + "\n" + res[i].event.name + "(id: "+res[i].event.id+")", true);
+                    embed.addField("\u200b", team1State + " - " + team2State + "\n" + res[i].event.name + " (id: "+res[i].event.id+")", true);
                     embed.addField("\u200b", "\n" + mapsScore, true);
                 }
                 message.channel.send({embed});
