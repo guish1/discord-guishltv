@@ -67,7 +67,7 @@ client.on("message", message => {
                         var team2Name = "["+res[i+1].team.name+"](https://www.hltv.org/team/"+res[i+1].team.id+"/"+team2NameFormatted+" 'id: "+res[i+1].team.id+"')";
                         var team1Front = res[i].place+". "+flag1+""+team1Name+" ("+res[i].points+" pts)";
                         var team2Front = res[i+1].place+". "+flag2+""+team2Name+" ("+res[i+1].points+" pts)";
-                        embed.addField( , team1Front + "\n" + team2Front);
+                        embed.addField("\u200b", team1Front + "\n" + team2Front);
                     }
                     embed.addBlankField(true);
                     message.channel.send({embed});
