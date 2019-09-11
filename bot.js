@@ -56,12 +56,12 @@ client.on("message", message => {
                         // get team informations
                         var team = await getTeam(res[i].team.id);
                         // get team flag
-                        //var flag = (typeof countries[team.location] != "undefined") ? "\:flag_"+countries[team.location]+": " : "";
+                        var flag = (typeof countries[team.location] != "undefined") ? "\:flag_"+countries[team.location]+": " : "";
                         // get team name, format one for external URL
                         var teamNameFormatted = (res[i].team.name).replace(/\s+/g, "-").toLowerCase();
                         
                         var teamName = "["+res[i].team.name+"](https://www.hltv.org/team/"+res[i].team.id+"/"+teamNameFormatted+" 'id: "+res[i].team.id+"')";
-                        embed.addField(i+1 + ". "+res[i].points+" pts", teamName+"\n\u200b", true);
+                        embed.addField(i+1 + ". "+res[i].points+" pts", flag+teamName+"\n\u200b", true);
                     }
                     embed.addBlankField(false);
                     message.channel.send({embed});
