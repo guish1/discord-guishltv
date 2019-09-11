@@ -52,14 +52,14 @@ client.on("message", message => {
             (async function () {
                 if (args[0] == "team") {
                     //const res = await HLTV.getTeamRanking();
-                    var teams = [];
-                    const res = await Promise.all(teams.map(teams => HLTV.getTeamRanking()));
-                    console.log(res);
+                    const res = await Promise.all(res.map(res => HLTV.getTeamRanking()));
                     var embed = createEmbed("Top 21 Team ranking");
                     for(var i = 0; i < 21; i++) {
                         // get team informations
                         // const team = await getTeam(res[i].team.id);
                         const team = Promise.all(_.times(21).map(i => getTeam(res[i].team.id)));
+                        console.log(res[i].team.id);
+                        console.log(team);
                         // get team flag
                         var flag = (typeof countries[team.location] != "undefined") ? "\:flag_"+countries[team.location]+": " : "";
                         // get team name, format one for external URL
