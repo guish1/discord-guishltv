@@ -52,16 +52,22 @@ client.on("message", message => {
                 if (args[0] == "team") {
                     const res = await HLTV.getTeamRanking();
                     var embed = createEmbed("Top 30 Team ranking");
-                    for(var i = 0; i < res.length; i++) {
+                    for(var i = 0; i < res.length; i+2) {
                         // get teams informations
-                        const team = await getTeam(res[i].team.id);
+                        const team1 = await getTeam(res[i].team.id);
+                        const team2 = await getTeam(res[i+1].team.id);
                         // get team flag
-                        var flag = (typeof countries[team.location] != "undefined") ? "\:flag_"+countries[team.location]+": " : "";
+                        var flag1 = (typeof countries[team1.location] != "undefined") ? "\:flag_"+countries[team1.location]+": " : "";
+                        var flag2 = (typeof (countries[team2.location] != "undefined") ? "\:flag_"+countries[team2.location]+": " : "";
                         // get team name, format one for external URL
-                        var teamNameFormatted = (res[i].team.name).replace(/\s+/g, '-').toLowerCase();
-                        var teamName = "["+res[i].team.name+"](https://www.hltv.org/team/"+res[i].team.id+"/"+teamNameFormatted+" 'id: "+res[i].team.id+"')";
-                        var teamFront = "#"+res[i].place+". "+flag+""+teamName+" ("+res[i].points+" pts)";
-                        embed.addField("\u200b", teamFront+"\n");
+                        var team1NameFormatted = (res[i].team.name).replace(/\s+/g, "-").toLowerCase();
+                        var team2NameFormatted = (res[i+1].team.name).replace(/\s+/g, "-").toLowerCase();
+                        
+                        var team1Name = "["+res[i].team.name+"](https://www.hltv.org/team/"+res[i].team.id+"/"+team1NameFormatted+" 'id: "+res[i].team.id+"')";
+                        var team2Name = "["+res[i+1].team.name+"](https://www.hltv.org/team/"+res[i+1].team.id+"/"+team2NameFormatted+" 'id: "+res[i+1].team.id+"')";
+                        var team1Front = res[i].place+". "+flag1+""+team1Name+" ("+res[i].points+" pts)";
+                        var team2Front = res[i+1].place+". "+flag2+""+team2Name+" ("+res[i+1].points+" pts)";
+                        embed.addField(team1Front, team2Front);
                     }
                     embed.addBlankField(true);
                     message.channel.send({embed});
