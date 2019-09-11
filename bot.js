@@ -51,8 +51,8 @@ client.on("message", message => {
             (async function () {
                 if (args[0] == "team") {
                     const res = await HLTV.getTeamRanking();
-                    var embed = createEmbed("Top 20 Team ranking");
-                    for(var i = 0; i < 20; i++) {
+                    var embed = createEmbed("Top 21 Team ranking");
+                    for(var i = 0; i < 21; i++) {
                         // get team informations
                         const team = await getTeam(res[i].team.id);
                         // get team flag
