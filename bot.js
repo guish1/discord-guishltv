@@ -49,6 +49,7 @@ client.on("message", message => {
             break;
             case "ranking":
             (async function () {
+                console.log(args[0]);
                 if (args[0] == "team") {
                     const res = await HLTV.getTeamRanking();
                     var embed = createEmbed("Top 30 Team ranking");
