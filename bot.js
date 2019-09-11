@@ -52,7 +52,7 @@ client.on("message", message => {
                 if (args[0] == "team") {
                     const res = await HLTV.getTeamRanking();
                     var embed = createEmbed("Top 30 Team ranking");
-                    for(var i = 0; i < res.length; i+2) {
+                    for(var i = 0; i < 16; i+2) {
                         // get teams informations
                         const team1 = await getTeam(res[i].team.id);
                         const team2 = await getTeam(res[i+1].team.id);
