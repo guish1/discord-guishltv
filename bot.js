@@ -51,8 +51,8 @@ client.on("message", message => {
             (async function () {
                 if (args[0] == "team") {
                     const res = await HLTV.getTeamRanking();
-                    var embed = createEmbed("Top 15 Team ranking");
-                    for(var i = 0; i < 15; i++) {
+                    var embed = createEmbed("Top 20 Team ranking");
+                    for(var i = 0; i < 20; i++) {
                         // get team informations
                         const team = await getTeam(res[i].team.id);
                         // get team flag
@@ -61,7 +61,7 @@ client.on("message", message => {
                         var teamNameFormatted = (res[i].team.name).replace(/\s+/g, "-").toLowerCase();
                         
                         var teamName = "["+res[i].team.name+"](https://www.hltv.org/team/"+res[i].team.id+"/"+teamNameFormatted+" 'id: "+res[i].team.id+"')";
-                        embed.addField(i+1, flag+""+teamName+" ("+res[i].points+" pts)", true);
+                        embed.addField(i+1 + ". "+res[i].points+" pts", flag+""+teamName+" , true);
                     }
                     embed.addBlankField(true);
                     message.channel.send({embed});
