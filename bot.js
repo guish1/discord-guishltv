@@ -58,7 +58,7 @@ client.on("message", message => {
                         const team2 = await getTeam(res[i+1].team.id);
                         // get team flag
                         var flag1 = (typeof countries[team1.location] != "undefined") ? "\:flag_"+countries[team1.location]+": " : "";
-                        var flag2 = (typeof (countries[team2.location] != "undefined") ? "\:flag_"+countries[team2.location]+": " : "";
+                        var flag2 = (typeof countries[team2.location] != "undefined") ? "\:flag_"+countries[team2.location]+": " : "";
                         // get team name, format one for external URL
                         var team1NameFormatted = (res[i].team.name).replace(/\s+/g, "-").toLowerCase();
                         var team2NameFormatted = (res[i+1].team.name).replace(/\s+/g, "-").toLowerCase();
