@@ -52,8 +52,7 @@ client.on("message", message => {
                 if (args[0] == "team") {
                     const res = await HLTV.getTeamRanking();
                     var embed = createEmbed("Top 30 Team ranking");
-                    for(var i = 0; i < 16; i+2) {
-                        console.log(i);
+                    for(var i = 0; i < 30; i+=2) {
                         // get teams informations
                         const team1 = await getTeam(res[i].team.id);
                         const team2 = await getTeam(res[i+1].team.id);
@@ -72,7 +71,6 @@ client.on("message", message => {
                         embed.addField(team1Front, team2Front);
                     }
                     embed.addBlankField(true);
-                    console.log("toto");
                     message.channel.send({embed});
                 }
                 else if (args[0] == "player") {
