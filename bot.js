@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+var _ = require('lodash');
 const client = new Discord.Client();
 
 const countries = require("./countries.json");
