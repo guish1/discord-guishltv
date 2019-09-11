@@ -52,8 +52,9 @@ client.on("message", message => {
                 if (args[0] == "team") {
                     const res = await HLTV.getTeamRanking();
                     var embed = createEmbed("Top 21 Team ranking");
-                    const teams = Promise.all(_.times(21).map(i => getTeam(res[i].team.id)));
-                    console.log(teams);
+                    const teams = Promise.all([_.times(21).map(i => getTeam(res[i].team.id))]).then(function(results) {
+                        console.log(results);
+                    })
                     for(var i = 0; i < 21; i++) {
                         // get team informations
                         // const team = await getTeam(res[i].team.id);
