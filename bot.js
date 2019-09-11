@@ -61,7 +61,7 @@ client.on("message", message => {
                         var teamNameFormatted = (res[i].team.name).replace(/\s+/g, "-").toLowerCase();
                         
                         var teamName = "["+res[i].team.name+"](https://www.hltv.org/team/"+res[i].team.id+"/"+teamNameFormatted+" 'id: "+res[i].team.id+"')";
-                        embed.addField(i+1 + ". "+res[i].points+" pts", flag+""+teamName+" , true);
+                        embed.addField(i+1 + ". "+res[i].points+" pts", flag+""+teamName, true);
                     }
                     embed.addBlankField(true);
                     message.channel.send({embed});
