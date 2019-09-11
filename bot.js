@@ -63,7 +63,7 @@ client.on("message", message => {
                         var teamName = "["+res[i].team.name+"](https://www.hltv.org/team/"+res[i].team.id+"/"+teamNameFormatted+" 'id: "+res[i].team.id+"')";
                         embed.addField(i+1 + ". "+res[i].points+" pts", flag+""+teamName, true);
                     }
-                    embed.addBlankField(true);
+                    embed.addBlankField(false);
                     message.channel.send({embed});
                 }
                 else if (args[0] == "player") {
