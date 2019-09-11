@@ -18,8 +18,8 @@ var createEmbed = (title) => {
     return embed;
 }
 
-async function getTeam(teamId) {
-    const team = await HLTV.getTeam({id: teamId});
+function getTeam(teamId) {
+    const team = HLTV.getTeam({id: teamId});
     return team;
 }
 async function getMatch(matchId) {
