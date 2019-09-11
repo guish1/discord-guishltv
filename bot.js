@@ -18,8 +18,8 @@ var createEmbed = (title) => {
     return embed;
 }
 
-async function getTeam(teamId) {
-    return await HLTV.getTeam({id: teamId});
+function getTeam(teamId) {
+    return HLTV.getTeam({id: teamId});
 }
 async function getMatch(matchId) {
     const match = await HLTV.getMatch({id: matchId});
@@ -53,9 +53,7 @@ client.on("message", message => {
                     const res = await HLTV.getTeamRanking();
                     var embed = createEmbed("Top 21 Team ranking");
                     const teams = Promise.all([_.times(21).map(i => getTeam(res[i].team.id))]).then(function([team]) {
-                        var teamX = team;
-                        console.log(team);
-                        console.log(teamX);
+console.log(team);
                     })
                     for(var i = 0; i < 21; i++) {
                         // get team informations
