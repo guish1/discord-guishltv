@@ -19,8 +19,7 @@ var createEmbed = (title) => {
 }
 
 async function getTeam(teamId) {
-    const team = await HLTV.getTeam({id: teamId});
-    return team;
+    return await HLTV.getTeam({id: teamId});
 }
 async function getMatch(matchId) {
     const match = await HLTV.getMatch({id: matchId});
@@ -56,13 +55,9 @@ client.on("message", message => {
                     for(var i = 0; i < 21; i++) {
                         // get team informations
                         // const team = await getTeam(res[i].team.id);
-                        // const team = Promise.all(_.times(21).map(i => getTeam(res[i].team.id)));
-                        const flag = Promise.all(_.times(21).map(i => getTeam(res[i].team.id))).then(function(team) {
-                            const flag = (typeof countries[team.location] != "undefined") ? "\:flag_"+countries[team.location]+": " : "";
-                            return flag;
-                        })
+                        const team = Promise.all(_.times(21).map(i => getTeam(res[i].team.id)));
                         // get team flag
-                        // var flag = (typeof countries[team.location] != "undefined") ? "\:flag_"+countries[team.location]+": " : "";
+                        var flag = (typeof countries[team.location] != "undefined") ? "\:flag_"+countries[team.location]+": " : "";
                         // get team name, format one for external URL
                         var teamNameFormatted = (res[i].team.name).replace(/\s+/g, "-").toLowerCase();
                         
