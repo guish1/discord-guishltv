@@ -18,8 +18,8 @@ var createEmbed = (title) => {
     return embed;
 }
 
-function getTeam(teamId) {
-    const team = HLTV.getTeam({id: teamId});
+async function getTeam(teamId) {
+    const team = await HLTV.getTeam({id: teamId});
     return team;
 }
 async function getMatch(matchId) {
@@ -57,8 +57,6 @@ client.on("message", message => {
                         // get team informations
                         // const team = await getTeam(res[i].team.id);
                         const team = Promise.all(_.times(21).map(i => getTeam(res[i].team.id)));
-                        console.log(res[i].team.id);
-                        console.log(team);
                         // get team flag
                         var flag = (typeof countries[team.location] != "undefined") ? "\:flag_"+countries[team.location]+": " : "";
                         // get team name, format one for external URL
