@@ -52,7 +52,13 @@ client.on("message", message => {
                 if (args[0] == "team") {
                     const res = await HLTV.getTeamRanking();
                     var embed = createEmbed("Top 21 Team ranking");
+                    const results = [];
                     for(var i = 0; i < 21; i++) {
+                        results.push(getTeam(res[i].team.id));   
+                    }
+                    var final = await Promise.all(results);
+                    console.log(final);
+                    /*for(var i = 0; i < 21; i++) {
                         // get team informations
                         const team = await getTeam(res[i].team.id);
                         // get team flag
@@ -64,7 +70,7 @@ client.on("message", message => {
                         embed.addField(i+1 + ". "+res[i].points+" pts", flag+teamName+"\n\u200b", true);
                     }
                     embed.addBlankField(false);
-                    message.channel.send({embed});
+                    message.channel.send({embed});*/
                 }
                 else if (args[0] == "player") {
                 }
