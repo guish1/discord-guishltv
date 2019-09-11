@@ -49,11 +49,11 @@ client.on("message", message => {
             break;
             case "ranking":
             (async function () {
-                console.log(args[0]);
                 if (args[0] == "team") {
                     const res = await HLTV.getTeamRanking();
                     var embed = createEmbed("Top 30 Team ranking");
                     for(var i = 0; i < 16; i+2) {
+                        console.log(i);
                         // get teams informations
                         const team1 = await getTeam(res[i].team.id);
                         const team2 = await getTeam(res[i+1].team.id);
@@ -68,9 +68,11 @@ client.on("message", message => {
                         var team2Name = "["+res[i+1].team.name+"](https://www.hltv.org/team/"+res[i+1].team.id+"/"+team2NameFormatted+" 'id: "+res[i+1].team.id+"')";
                         var team1Front = res[i].place+". "+flag1+""+team1Name+" ("+res[i].points+" pts)";
                         var team2Front = res[i+1].place+". "+flag2+""+team2Name+" ("+res[i+1].points+" pts)";
+                        console.log(team1Front + " / " + team2Front);
                         embed.addField(team1Front, team2Front);
                     }
                     embed.addBlankField(true);
+                    console.log("toto");
                     message.channel.send({embed});
                 }
                 else if (args[0] == "player") {
