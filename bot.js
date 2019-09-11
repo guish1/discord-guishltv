@@ -69,6 +69,7 @@ client.on("message", message => {
                         var team2Front = res[i+1].place+". "+flag2+""+team2Name+" ("+res[i+1].points+" pts)";
                         embed.addField("\u200b", team1Front + "\n" + team2Front, true);
                         embed.addField("\n\u200b", "\n\u200b", true);
+                        embed.addField("\n\u200b", "\n\u200b", true);
                     }
                     embed.addBlankField(true);
                     message.channel.send({embed});
