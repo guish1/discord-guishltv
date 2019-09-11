@@ -56,6 +56,10 @@ client.on("message", message => {
                         // get team informations
                         // const team = await getTeam(res[i].team.id);
                         const team = Promise.all(_.times(21).map(i => getTeam(res[i].team.id)));
+                        const f = Promise.all(_.times(21).map(i => getTeam(res[i].team.id))).then(function(team) {
+                            resolve(team);
+                        });
+                        console.log(f);
                         // get team flag
                         var flag = (typeof countries[team.location] != "undefined") ? "\:flag_"+countries[team.location]+": " : "";
                         // get team name, format one for external URL
