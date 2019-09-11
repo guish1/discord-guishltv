@@ -51,11 +51,12 @@ client.on("message", message => {
             case "ranking":
             (async function () {
                 if (args[0] == "team") {
-                    const res = await HLTV.getTeamRanking();
+                    //const res = await HLTV.getTeamRanking();
+                    const res = await Promise.all(res.map(res => HLTV.getTeamRanking()));
                     var embed = createEmbed("Top 21 Team ranking");
                     for(var i = 0; i < 21; i++) {
                         // get team informations
-                        //const team = await getTeam(res[i].team.id);
+                        // const team = await getTeam(res[i].team.id);
                         const team = Promise.all(_.times(21).map(i => getTeam(res[i].team.id)));
                         // get team flag
                         var flag = (typeof countries[team.location] != "undefined") ? "\:flag_"+countries[team.location]+": " : "";
