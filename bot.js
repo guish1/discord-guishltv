@@ -17,8 +17,8 @@ var createEmbed = (title) => {
     return embed;
 }
 
-function getTeam(teamId) {
-    const team = HLTV.getTeam({id: teamId});
+async function getTeam(teamId) {
+    const team = await HLTV.getTeam({id: teamId});
     return team;
 }
 async function getMatch(matchId) {
@@ -52,25 +52,20 @@ client.on("message", message => {
                 if (args[0] == "team") {
                     const res = await HLTV.getTeamRanking();
                     var embed = createEmbed("Top 21 Team ranking");
-                    const results = [];
                     for(var i = 0; i < 21; i++) {
-                        results.push(getTeam(res[i].team.id));   
-                    }
-                    var final = await Promise.all(results);
-                    console.log(final);
-                    /*for(var i = 0; i < 21; i++) {
                         // get team informations
-                        const team = await getTeam(res[i].team.id);
+                        //const team = await getTeam(res[i].team.id);
+                        const team = Promise.all(_.times(21).map(i => getTeam(res[i].team.id)));
                         // get team flag
                         var flag = (typeof countries[team.location] != "undefined") ? "\:flag_"+countries[team.location]+": " : "";
                         // get team name, format one for external URL
                         var teamNameFormatted = (res[i].team.name).replace(/\s+/g, "-").toLowerCase();
                         
                         var teamName = "["+res[i].team.name+"](https://www.hltv.org/team/"+res[i].team.id+"/"+teamNameFormatted+" 'id: "+res[i].team.id+"')";
-                        embed.addField(i+1 + ". "+res[i].points+" pts", flag+teamName+"\n\u200b", true);
+                        embed.addField("#" + i+1, flag+teamName+" ("+res[i].points+" pts)\n\u200b", true);
                     }
                     embed.addBlankField(false);
-                    message.channel.send({embed});*/
+                    message.channel.send({embed});
                 }
                 else if (args[0] == "player") {
                 }
