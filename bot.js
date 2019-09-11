@@ -56,7 +56,9 @@ client.on("message", message => {
                         // get team informations
                         // const team = await getTeam(res[i].team.id);
                         const team = Promise.all(_.times(21).map(i => getTeam(res[i].team.id)));
-                        const f = Promise.race([_.times(21).map(i => getTeam(res[i].team.id))]).then(function(results) {
+                        var p1 = Promise.resolve(_.times(21).map(i => getTeam(res[i].team.id)));
+                        console.log(p1);
+                        const f = Promise.all([p1]).then(function(results) {
                             console.log(results);
                         });
                         //console.log(f);
