@@ -54,8 +54,7 @@ client.on("message", message => {
                     var embed = createEmbed("Top 21 Team ranking");
                     for(var i = 0; i < 21; i++) {
                         // get team informations
-                        const teamPromise = await getTeam(res[i].team.id);
-                        const team = await Promise.all([teamPromise]);
+                        const team = await getTeam(res[i].team.id);
                         // get team flag
                         var flag = (typeof countries[team.location] != "undefined") ? "\:flag_"+countries[team.location]+": " : "";
                         // get team name, format one for external URL
