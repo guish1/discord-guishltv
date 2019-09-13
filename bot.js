@@ -1,14 +1,23 @@
+// Requirements
 const Discord = require("discord.js");
-var _ = require('lodash');
+const { HLTV } = require("hltv");
+var _ = require("lodash");
+  // Countries name: code
+const countries = require("./countries.json");
+// Client
 const client = new Discord.Client();
 
-const countries = require("./countries.json");
-//const auth = require("./auth.json");
+/*
+ToDo:
+- fix slow requests from await/async/promise (for !results & !ranking)
+- need global function to prevent duplicated code for each call :
+    * get team name
+    * formatted name
+    * get team rank
+*/
 
-const { HLTV } = require("hltv");
-
+// Default embed creation
 var createEmbed = (title) => {
-    if (typeof description == "undefined") description = "";
     var embed = new Discord.MessageEmbed()
     .setColor(0x00AE86)
     .setTitle(" ")
@@ -18,73 +27,89 @@ var createEmbed = (title) => {
     return embed;
 }
 
+// Get team informations from its ID
 function getTeam(teamId) {
     return HLTV.getTeam({id: teamId});
 }
+// Get match informations from its ID
 async function getMatch(matchId) {
     const match = await HLTV.getMatch({id: matchId});
     return match;
 }
-
+// Truncate string if needed to prevent line breaking
 function truncateString(string, number) {
     if (string.length <= number) return string;
     return string.slice(0, number) + "...";
 }
+
 client.on("ready", () => {
-    client.user.setActivity("Type !commands");
+    client.user.setActivity("!commands me");
 });
 
 client.on("message", message => {
+    // If message starts with "!"
     if (message.content.substring(0, 1) == "!") {
+        // Get arguments as !command arg
         var args = message.content.substring(1).split(" ");
+        // First arg is main command, all others are args
         var command = args[0];
         args = args.splice(1);
         switch(command) {
             case "commands": case "start":
-                var embed = createEmbed("GUISHLTV - Commands");
-                embed.addBlankField(true);
+                var embed = createEmbed("Commands");
                 embed.addField("!results", "Display last 5 world records");
                 embed.addField("!ranking team", "Display top 30 team ranking");
+                message.channel.send({embed});
+            break;
+            case "sourcecode":
+                var embed = createEmbed("Source code");
+                embed.addField("GIT", "[https://github.com/guish1/discord-guishltv](https://github.com/guish1/discord-guishltv)");
                 message.channel.send({embed});
             break;
             case "ranking":
             (async function () {
                 if (args[0] == "team") {
+                    // If !ranking team
+                    // Get full ranking (default : 30)
                     const res = await HLTV.getTeamRanking();
                     var embed = createEmbed("Top 21 Team ranking");
+                    // Get only 21 teams from ranking because of awesome Discord limit of 25 fields for message...
                     const teams = Promise.all([_.times(21).map(i => getTeam(res[i].team.id))]).then(function([team]) {
-console.log(team);
+console.log(team); // Promise: pending
                     })
                     for(var i = 0; i < 21; i++) {
-                        // get team informations
+                        // Get team informations to extract country code
                         // const team = await getTeam(res[i].team.id);
                         const team = Promise.all(_.times(21).map(i => getTeam(res[i].team.id)));
-                        //console.log(f);
-                        // get team flag
+                        // Get team flag from country
                         var flag = (typeof countries[team.location] != "undefined") ? "\:flag_"+countries[team.location]+": " : "";
-                        // get team name, format one for external URL
+                        // Get team name, format one for external URL
                         var teamNameFormatted = (res[i].team.name).replace(/\s+/g, "-").toLowerCase();
-                        
-                        var teamName = "["+res[i].team.name+"](https://www.hltv.org/team/"+res[i].team.id+"/"+teamNameFormatted+" 'id: "+res[i].team.id+"')";
-                        embed.addField("#" + i+1, flag+teamName+" ("+res[i].points+" pts)\n\u200b", true);
+                        // Final display
+                        var teamFront = "["+res[i].team.name+"](https://www.hltv.org/team/"+res[i].team.id+"/"+teamNameFormatted+" 'id: "+res[i].team.id+"')";
+                        embed.addField("#" + (i+1), flag+teamFront+" ("+res[i].points+" pts)\n\u200b", true);
                     }
                     embed.addBlankField(false);
                     message.channel.send({embed});
                 }
                 else if (args[0] == "player") {
+                    // If !ranking player
                 }
             })();
             break;
             case "results":
             (async function () {
+                // If !results
+                // Get full results
                 const res = await HLTV.getResults({pages: 1});
                 var embed = createEmbed("Last 5 world records");
+                // Limit results to 5 records
                 for (var i = 0; i < 5; i++) {
-                    // get teams informations
+                    // Get teams informations needed for flag and rank
                     const team1 = await getTeam(res[i].team1.id);
                     const team2 = await getTeam(res[i].team2.id);
 
-                    // get scores from each map
+                    // Get scores from each map
                     const score = await getMatch(res[i].id);
                     var mapsScore = "";
                     var count = 0;
@@ -97,29 +122,29 @@ console.log(team);
                     }
                     if (mapsScore == "") mapsScore = "N/A";
 
-                    // get team flag
+                    // Get team flag from country
                     var flag1 = (typeof countries[team1.location] != "undefined") ? "\:flag_"+countries[team1.location]+": " : "";
                     var flag2 = (typeof countries[team2.location] != "undefined") ? "\:flag_"+countries[team2.location]+": " : "";
-                    // get team name, format one for external URL
+                    // Get team name, format one for external URL
                     var team1NameFormatted = (res[i].team1.name).replace(/\s+/g, '-').toLowerCase();
                     var team2NameFormatted = (res[i].team2.name).replace(/\s+/g, '-').toLowerCase();
                     var team1Name = "["+res[i].team1.name+"](https://www.hltv.org/team/"+res[i].team1.id+"/"+team1NameFormatted+" 'id: "+res[i].team1.id+"')";
                     var team2Name = "["+res[i].team2.name+"](https://www.hltv.org/team/"+res[i].team2.id+"/"+team2NameFormatted+" 'id: "+res[i].team2.id+"')";
-                    // get team rank
+                    // Get team rank
                     var team1Rank = (typeof team1.rank != "undefined") ? "(#"+team1.rank+") " : "";
                     var team2Rank = (typeof team2.rank != "undefined") ? "(#"+team2.rank+")" : "";
-                    // get final score
+                    // Get final score
                     var scores = (res[i].result).split(" - ");
                     var team1Score = parseInt(scores[0]); 
                     var team2Score = parseInt(scores[1]);
-                    // set front display with formatted team informations
+                    // Set front display with formatted team informations
                     // as [FLAG + NAME + RANK + SCORE] - [SCORE + FLAG + NAME + RANK]
                     var team1Front = flag1 + team1Name+" "+team1Rank+""+team1Score;
                     var team2Front = team2Score+" "+flag2 + team2Name+" "+team2Rank;
-                    // set bold text for winner
+                    // Set bold text for winner
                     var team1State = (team1Score > team2Score) ? "**"+team1Front+"**" : team1Front;
                     var team2State = (team1Score < team2Score) ? "**"+team2Front+"**" : team2Front;
-                    // get format event name
+                    // Get format event name
                     var eventNameFormatted = (res[i].event.name).replace(/\s+/g, '-').toLowerCase();
 
                     embed.addField("\u200b", team1State+" - "+team2State+"\n["+res[i].event.name+"](https://www.hltv.org/events/"+res[i].event.id+"/"+eventNameFormatted+" 'id: "+res[i].event.id+"') - "+mapsScore);
