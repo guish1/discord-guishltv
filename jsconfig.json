@@ -1,0 +1,11 @@
+{
+  "exclude": [
+    "./node_modules/",
+    "./.vscode"
+  ],
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es2016",
+    "baseUrl": "./src/"
+  }
+}

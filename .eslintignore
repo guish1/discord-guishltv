@@ -1,0 +1,7 @@
+# Dependencies.
+node_modules/
+
+# Include config folders.
+!/.jest/
+# Include root config files.
+!/*.js
