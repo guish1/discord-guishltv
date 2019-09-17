@@ -60,5 +60,14 @@ module.exports = {
         ],
       },
     },
+    {
+      files: [
+        '__mocks__/**/*.js',
+      ],
+      rules: {
+        'max-classes-per-file': 'off',
+        'class-methods-use-this': 'off',
+      },
+    },
   ],
 };
