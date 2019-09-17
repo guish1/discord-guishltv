@@ -5,10 +5,11 @@
   "main": "src/bot.js",
   "author": "Maxime 'gu1sh' LEBON",
   "scripts": {
-    "start": "node src/bot.js"
+    "start": "node src/bot.js",
+    "test": "jest"
   },
   "dependencies": {
-    "discord.js": "^11.5.1",
+    "discord.js": "https://github.com/discordjs/discord.js",
     "hltv": "^2.16.1",
     "lodash": "^4.17.15"
   },
