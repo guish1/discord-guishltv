@@ -38,6 +38,7 @@ const getMatch = (matchId) => HLTV.getMatch({ id: matchId });
 // );
 
 client.on('ready', () => {
+  // Todo not sure what this does.
   client.user.setActivity('!commands me');
 });
 
