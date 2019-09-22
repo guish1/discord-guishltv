@@ -59,14 +59,6 @@ module.exports.MessageEmbed = class MessageEmbed {
   }
 
   addBlankField(inline) {
-    this.fields = this.fields || [];
-
-    this.fields.push({
-      name: '',
-      value: '',
-      inline,
-    });
-
-    return this;
+    return this.addField('', '', inline);
   }
 };
