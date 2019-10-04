@@ -11,17 +11,7 @@ const {
 // Client
 const client = getDiscordClient();
 
-/*
-ToDo:
-- fix slow requests from await/async/promise (for !results & !ranking)
-- need global function to prevent duplicated code for each call :
-    * get team name
-    * formatted name
-    * get team rank
-*/
-
 client.on('ready', () => {
-  // Todo not sure what this does.
   client.user.setActivity('!commands me');
 });
 
@@ -48,7 +38,6 @@ client.on('message', async (message) => {
     }
 
     case '!results':
-      // If !results.
       return onResults(message);
 
     default:

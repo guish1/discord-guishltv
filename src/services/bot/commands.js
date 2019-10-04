@@ -1,5 +1,6 @@
 const { HLTV } = require('hltv');
 
+const { getTeam } = require('../hltv/teams');
 const { createMessageEmbed } = require('../messages/embed');
 const { formatMatchResult, formatTeam } = require('../messages/format');
 
@@ -24,7 +25,7 @@ const onRankingTeams = async (message) => {
     // Get only 21 teams from ranking because of Discord limit of 25 fields for message.
     teamsRanking.slice(0, 21)
       .map(async (teamRanking) => ({
-        team: await HLTV.getTeam({ id: teamRanking.team.id }),
+        team: await getTeam({ id: teamRanking.team.id }),
         points: teamRanking.points,
         place: teamRanking.place,
       })),
@@ -35,8 +36,7 @@ const onRankingTeams = async (message) => {
     embed.addField(`#${place}`, `${flag} ${link} (${points} pts)\n\u200b`, true);
   });
 
-  // Todo what is this for?
-  embed.addBlankField(false);
+  embed.addBlankField(true);
   message.channel.send({ embed });
 };
 
@@ -52,8 +52,8 @@ const onResults = async (message) => {
   const matchesWithTeams = await Promise.all(matchResults.slice(0, 5).map(async (result) => {
     const [match, team1, team2] = await Promise.all([
       HLTV.getMatch({ id: result.id }),
-      HLTV.getTeam({ id: result.team1.id }),
-      HLTV.getTeam({ id: result.team2.id }),
+      getTeam({ id: result.team1.id }),
+      getTeam({ id: result.team2.id }),
     ]);
 
     return {
