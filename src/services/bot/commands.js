@@ -17,7 +17,7 @@ const onSourceCode = (message) => {
 };
 
 const onRankingTeams = async (message) => {
-  const embed = createMessageEmbed('Top 21 Team ranking');
+  const embed = createMessageEmbed('Top #21 Team ranking');
 
   const teamsRanking = await HLTV.getTeamRanking();
   const teamRankingWithTeamsInformation = await Promise.all(
