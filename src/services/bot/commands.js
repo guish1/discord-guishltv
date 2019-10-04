@@ -23,11 +23,16 @@ const onRankingTeams = async (message) => {
   const teamRankingWithTeamsInformation = await Promise.all(
     // Get only 21 teams from ranking because of Discord limit of 25 fields for message.
     teamsRanking.slice(0, 21)
-      .map(async (teamRanking) => ({
-        team: await HLTV.getTeam({ id: teamRanking.team.id }),
-        points: teamRanking.points,
-        place: teamRanking.place,
-      })),
+      .map(async (teamRanking) => {
+        console.time(`team ${teamRanking.team.id}`);
+        const result = {
+          team: await HLTV.getTeam({ id: teamRanking.team.id }),
+          points: teamRanking.points,
+          place: teamRanking.place,
+        };
+        console.timeEnd(`team ${teamRanking.team.id}`);
+        return result;
+      }),
   );
 
   teamRankingWithTeamsInformation.forEach(({ team, points, place }) => {
