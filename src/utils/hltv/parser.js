@@ -5,15 +5,18 @@
  * @returns {object} Team results if valid format.
  */
 const parseMapResult = (mapResult) => {
-  const [, score] = mapResult.match(/^(\d+:\d+)/i);
+  const parsed = mapResult.match(/^(\d+:\d+)/i);
 
-  if (!score) {
-    return null;
+  if (!parsed) {
+    return { isValid: false };
   }
+
+  const [, score] = parsed;
 
   const [team1Score, team2Score] = score.split(':');
 
   return {
+    isValid: true,
     team1: +team1Score,
     team2: +team2Score,
   };
@@ -29,7 +32,7 @@ const parseMatchResult = (matchMaps) => matchMaps.reduce(
   (acc, matchMap) => {
     const score = parseMapResult(matchMap.result);
 
-    if (score) {
+    if (score.isValid) {
       acc.team1 += (score.team1 > score.team2) ? 1 : 0;
       acc.team2 += (score.team1 < score.team2) ? 1 : 0;
     }

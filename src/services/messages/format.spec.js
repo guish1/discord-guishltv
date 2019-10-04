@@ -80,5 +80,13 @@ describe('format', () => {
         TEAMS_MAP[MATCHES[0].team2.id],
       )).toBe("**:flag_cn: [TYLOO](https://www.hltv.org/team/4863/tyloo 'id: 4863') (#27) 2** - 1 :flag_cn: [EHOME](https://www.hltv.org/team/7024/ehome 'id: 7024') (#263)\n[IEM Beijing 2019 Greater China Closed Qualifier](https://www.hltv.org/events/4906/iem-beijing-2019-greater-china-closed-qualifier 'id: 4906') 13:16 / 16:10 / 16:9");
     });
+
+    it('does not crash if the match does not have map results', () => {
+      expect(formatMatchResult(
+        MATCHES[1],
+        TEAMS_MAP[MATCHES[0].team1.id],
+        TEAMS_MAP[MATCHES[0].team2.id],
+      )).toBe("**:flag_cn: [TYLOO](https://www.hltv.org/team/4863/tyloo 'id: 4863') (#27) 0** - 0 :flag_cn: [EHOME](https://www.hltv.org/team/7024/ehome 'id: 7024') (#263)\n[IEM Beijing 2019 Greater China Closed Qualifier](https://www.hltv.org/events/4906/iem-beijing-2019-greater-china-closed-qualifier 'id: 4906') N/A / N/A / N/A");
+    });
   });
 });

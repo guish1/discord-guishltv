@@ -23,9 +23,9 @@ const setBoldIf = (str, condition) => (
 const formatMapsScore = (maps) => (
   maps.map((map) => {
     const parsedMapResult = parseMapResult(map.result);
-    return parsedMapResult
+    return parsedMapResult.isValid
       ? `${parsedMapResult.team1}:${parsedMapResult.team2}`
-      : '1 map from WB';
+      : 'N/A';
   }).join(' / ')
   || 'N/A'
 );
