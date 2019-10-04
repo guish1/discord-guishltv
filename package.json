@@ -1,14 +1,27 @@
 {
-    "name": "GUISHLTV",
-    "version": "1.0.0",
-    "description": "Unofficial bot for HLTV records",
-    "main": "bot.js",
-    "author": "Maxime 'gu1sh' LEBON",
-    "scripts": {
-        "start": "node bot.js"
-    },
-    "dependencies": {
-        "discord.js": "github:discordjs/discord.js",
-        "hltv": "^2.16.1"
-    }
+  "name": "guishltv",
+  "version": "1.0.0",
+  "description": "Unofficial bot for HLTV records",
+  "main": "src/bot.js",
+  "author": "Maxime 'gu1sh' LEBON",
+  "scripts": {
+    "start": "node src/bot.js",
+    "test": "jest"
+  },
+  "dependencies": {
+    "discord.js": "https://github.com/discordjs/discord.js",
+    "hltv": "^2.16.1",
+    "lodash": "^4.17.15"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^8.1.0",
+    "@commitlint/config-conventional": "^8.1.0",
+    "eslint": "^6.4.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "husky": "^3.0.5",
+    "jest": "^24.9.0",
+    "lint-staged": "^9.2.5",
+    "npm-run-all": "^4.1.5"
+  }
 }
