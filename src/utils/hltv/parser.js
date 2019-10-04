@@ -5,6 +5,7 @@
  * @returns {object} Team results if valid format.
  */
 const parseMapResult = (mapResult) => {
+  console.log(mapResult);
   const [, score] = mapResult.match(/^(\d+:\d+)/i);
 
   if (!score) {
