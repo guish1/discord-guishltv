@@ -49,7 +49,7 @@ const onResults = async (message) => {
   const matchResults = await HLTV.getResults({ pages: 1 });
   const embed = createMessageEmbed('Last 5 world records');
 
-  const matchesWithTeams = Promise.all(matchResults.slice(0, 5).map(async (result) => {
+  const matchesWithTeams = await Promise.all(matchResults.slice(0, 5).map(async (result) => {
     const [match, team1, team2] = await Promise.all([
       HLTV.getMatch({ id: result.id }),
       HLTV.getTeam({ id: result.team1.id }),
