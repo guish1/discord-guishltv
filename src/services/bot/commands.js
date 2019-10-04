@@ -62,8 +62,9 @@ const onResults = async (message) => {
       team2,
     };
   }));
-console.log(JSON.stringify(matchesWithTeams, null, 2));
+
   matchesWithTeams.forEach(({ match, team1, team2 }) => {
+    console.log(JSON.stringify(match, null, 2));
     embed.addField('\u200b', formatMatchResult(match, team1, team2));
   });
 
