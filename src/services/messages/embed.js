@@ -5,5 +5,5 @@ module.exports.createMessageEmbed = (title) => new Discord.MessageEmbed()
   .setColor(0x00AE86)
   .setTitle(' ')
   .setAuthor(`GUISHLTV - ${title}`, 'https://i.imgur.com/G34L4R7.png', 'https://www.avisdetemplate.fr')
-  .setFooter('© Powered by GUISH 2019 - Unofficial HLTV Bot')
+  .setFooter('© Powered by GU1SH & T3LZ 2019 - Unofficial HLTV Bot')
   .setTimestamp();

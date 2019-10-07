@@ -1,6 +1,7 @@
 const { HLTV } = require('hltv');
 
 const { getTeam } = require('../hltv/teams');
+const { clearCacheTeam } = require('../hltv/teams');
 const { createMessageEmbed } = require('../messages/embed');
 const { formatMatchResult, formatTeam } = require('../messages/format');
 
@@ -12,7 +13,7 @@ const onCommands = (message) => {
 };
 
 const onClearCache = () => {
-  clearCacheTeam();
+  await clearCacheTeam();
 };
 
 const onSourceCode = (message) => {
