@@ -13,7 +13,7 @@ const onCommands = (message) => {
 };
 
 const onClearCache = () => {
-  await clearCacheTeam();
+  clearCacheTeam();
 };
 
 const onSourceCode = (message) => {
