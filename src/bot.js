@@ -21,8 +21,14 @@ client.on('message', async (message) => {
   const [command, ...args] = message.content.split(' ');
 
   switch (command) {
+    case '!restart':
+      console.log(teamsCache[5973]);
+      return true;
+      
+    case '!clearcache':
+      teamsCache = false;
+      
     case '!commands':
-    case '!start':
       return onCommands(message);
 
     case '!sourcecode':
