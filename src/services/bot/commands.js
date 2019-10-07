@@ -11,6 +11,10 @@ const onCommands = (message) => {
   message.channel.send({ embed });
 };
 
+const onClearCache = () => {
+  clearCacheTeam();
+};
+
 const onSourceCode = (message) => {
   const embed = createMessageEmbed('Source code');
   embed.addField('GIT', '[https://github.com/guish1/discord-guishltv](https://github.com/guish1/discord-guishltv)');
@@ -74,6 +78,7 @@ const onResults = async (message) => {
 
 module.exports = {
   onCommands,
+  onClearCache,
   onSourceCode,
   onRankingTeams,
   onRankingPlayers,

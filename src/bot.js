@@ -2,6 +2,7 @@ const { getClient: getDiscordClient } = require('./bootstrap/discord');
 
 const {
   onCommands,
+  onClearCache,
   onSourceCode,
   onRankingTeams,
   onRankingPlayers,
@@ -22,11 +23,10 @@ client.on('message', async (message) => {
 
   switch (command) {
     case '!restart':
-      console.log(teamsCache[5973]);
       return true;
       
     case '!clearcache':
-      teamsCache = false;
+      return onClearCache();
       
     case '!commands':
       return onCommands(message);

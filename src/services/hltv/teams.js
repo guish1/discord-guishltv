@@ -16,6 +16,11 @@ const getTeam = async ({ id }) => {
   return teamsCache[id].team;
 };
 
+const clearCacheTeam = () => {
+  teamsCache = {};
+}
+
 module.exports = {
   getTeam,
+  clearCacheTeam,
 };
