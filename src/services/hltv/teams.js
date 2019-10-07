@@ -1,7 +1,7 @@
 const { HLTV } = require('hltv');
 const moment = require('moment');
 
-const teamsCache = {};
+let teamsCache = {};
 
 const getTeam = async ({ id }) => {
   const { team, date } = teamsCache[id] || {};
