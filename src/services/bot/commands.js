@@ -24,7 +24,7 @@ const onSourceCode = (message) => {
 
 const onRankingTeams = async (message) => {
   const embed = createMessageEmbed('Top #21 Team ranking');
-
+  embed.addBlankField(true);
   const teamsRanking = await HLTV.getTeamRanking();
   const teamRankingWithTeamsInformation = await Promise.all(
     // Get only 21 teams from ranking because of Discord limit of 25 fields for message.
@@ -41,7 +41,6 @@ const onRankingTeams = async (message) => {
     embed.addField(`#${place}`, `${flag} ${link} (${points} pts)\n\u200b`, true);
   });
 
-  embed.addBlankField(true);
   message.channel.send({ embed });
 };
 
@@ -72,8 +71,6 @@ const onResults = async (message) => {
     embed.addField('\u200b', formatMatchResult(match, team1, team2));
   });
 
-  // Todo necessary?
-  embed.addBlankField(true);
   message.channel.send({ embed });
 };
 
