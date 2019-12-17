@@ -35,8 +35,6 @@ const onRankingTeams = async (message) => {
     embed.addField(`#${place}`, `${flag} ${link} (${points} pts)\n\u200b`, true);
   });
 
-  // Todo what is this for?
-  embed.addBlankField(false);
   message.channel.send({ embed });
 };
 
@@ -67,8 +65,6 @@ const onResults = async (message) => {
     embed.addField('\u200b', formatMatchResult(match, team1, team2));
   });
 
-  // Todo necessary?
-  embed.addBlankField(true);
   message.channel.send({ embed });
 };
 
