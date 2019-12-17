@@ -24,7 +24,6 @@ const onSourceCode = (message) => {
 
 const onRankingTeams = async (message) => {
   const embed = createMessageEmbed('Top #21 Team ranking');
-  embed.addBlankField(false);
   const teamsRanking = await HLTV.getTeamRanking();
   const teamRankingWithTeamsInformation = await Promise.all(
     // Get only 21 teams from ranking because of Discord limit of 25 fields for message.
