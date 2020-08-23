@@ -64,7 +64,7 @@ const formatTeam = ({
 }) => {
   const slug = formatSlug(name);
   const url = `https://www.hltv.org/team/${id}/${encodeURIComponent(slug)}`;
-
+  // remove ${url} from link
   return {
     id,
     name,
@@ -74,7 +74,7 @@ const formatTeam = ({
     url,
     rank,
     flag: getCountryFlagEmoji(location),
-    link: `[${name}](${url} 'id: ${id}')`,
+    link: `[${name}]( 'id: ${id}')`,
   };
 };
 
