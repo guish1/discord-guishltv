@@ -22,19 +22,19 @@ client.on('message', async (message) => {
   const [command, ...args] = message.content.split(' ');
 
   switch (command) {
-    case '!restart':
+    case 'g!restart':
       return true;
       
-    case '!clearcache':
+    case 'g!clearcache':
       return onClearCache();
       
-    case '!commands':
+    case 'g!commands':
       return onCommands(message);
 
-    case '!sourcecode':
+    case 'g!sourcecode':
       return onSourceCode(message);
 
-    case '!ranking': {
+    case 'g!ranking': {
       if (args[0] === 'team') {
         return onRankingTeams(message);
       } if (args[0] === 'player') {
@@ -43,7 +43,7 @@ client.on('message', async (message) => {
       return null;
     }
 
-    case '!results':
+    case 'g!results':
       return onResults(message);
 
     default:
