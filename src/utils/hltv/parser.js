@@ -6,7 +6,7 @@
  */
 const parseMapResult = (mapResult) => {
   const parsed = mapResult.match(/^(\d+:\d+)/i);
-
+  console.log(parsed);
   if (!parsed) {
     return { isValid: false };
   }
@@ -31,7 +31,8 @@ const parseMapResult = (mapResult) => {
 const parseMatchResult = (matchMaps) => matchMaps.reduce(
   (acc, matchMap) => {
     const score = parseMapResult(matchMap.result);
-
+    console.log(score.team1);
+    console.log(score.team2);
     if (score.isValid) {
       acc.team1 += (score.team1 > score.team2) ? 1 : 0;
       acc.team2 += (score.team1 < score.team2) ? 1 : 0;
