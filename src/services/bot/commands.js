@@ -7,8 +7,8 @@ const { formatMatchResult, formatTeam } = require('../messages/format');
 
 const onCommands = (message) => {
   const embed = createMessageEmbed('Commands');
-  embed.addField('!results', 'Display last 5 world records');
-  embed.addField('!ranking team', 'Display top 30 team ranking');
+  embed.addField('g!results', 'Display last 5 world records');
+  embed.addField('g!ranking team', 'Display top 30 team ranking');
   message.channel.send({ embed });
 };
 
@@ -66,10 +66,10 @@ const onResults = async (message) => {
     };
   }));
 
-matchesWithTeams.forEach(({ match, team1, team2 }) => {
+  matchesWithTeams.forEach(({ match, team1, team2 }) => {
     embed.addField('\u200b', formatMatchResult(match, team1, team2));
-});
-embed.addField('\n\u200b', '\u200b');
+  });
+  embed.addField('\n\u200b', '\u200b');
 
   message.channel.send({ embed });
 };
