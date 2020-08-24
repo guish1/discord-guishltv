@@ -113,7 +113,8 @@ const formatMatchResultTeam = (team) => {
  * @returns {string} Match result.
  */
 const formatMatchResult = (match, team1, team2) => {
-  console.log(match.maps);
+  
+  return JSON.stringify(match.maps);
   const teamScores = parseMatchResult(match.maps);
   const eventLink = formatEventLink(match.event);
 
