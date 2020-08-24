@@ -25,7 +25,7 @@ const formatMapsScore = (maps) => (
     const parsedMapResult = parseMapResult(map.result);
     return parsedMapResult.isValid
       ? `${parsedMapResult.team1}:${parsedMapResult.team2}`
-      : 'N/A';
+      : '(N/A)';
   }).join(' / ')
   || 'N/A'
 );
