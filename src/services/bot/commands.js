@@ -27,7 +27,7 @@ const onRankingTeams = async (message) => {
   const teamsRanking = await HLTV.getTeamRanking();
   const teamRankingWithTeamsInformation = await Promise.all(
     // Get only 21 teams from ranking because of Discord limit of 25 fields for message.
-    teamsRanking.slice(0, 21)
+    teamsRanking.slice(0, 10)
       .map(async (teamRanking) => ({
         team: await getTeam({ id: teamRanking.team.id }),
         points: teamRanking.points,
@@ -44,6 +44,7 @@ const onRankingTeams = async (message) => {
     const { flag, link } = formatTeam(team);
     str += `#${place} - ${flag} ${link} (${points} pts)\n`
   });
+  console.log(str)
   embed.addField(`\u200b`, str + '\n');
 
   message.channel.send({ embed });
@@ -73,6 +74,7 @@ const onResults = async (message) => {
   }));
 
   matchesWithTeams.forEach(({ match, team1, team2 }, index) => {
+    console.log(index)
     embed.addField('\u200b', formatMatchResult(match, team1, team2) + ((index < 5) ? "" : "\n\u200b"));
   });
 
