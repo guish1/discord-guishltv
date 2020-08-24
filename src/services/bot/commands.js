@@ -73,7 +73,7 @@ const onResults = async (message) => {
   }));
 
   matchesWithTeams.forEach(({ match, team1, team2 }, index) => {
-    embed.addField('\u200b', formatMatchResult(match, team1, team2) + ((index < 5) ? "" : "\n"));
+    embed.addField('\u200b', formatMatchResult(match, team1, team2) + ((index < 5) ? "" : "\n\u200b"));
   });
 
   message.channel.send({ embed });
