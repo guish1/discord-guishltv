@@ -35,10 +35,16 @@ const onRankingTeams = async (message) => {
       })),
   );
 
-  teamRankingWithTeamsInformation.forEach(({ team, points, place }) => {
+  /*teamRankingWithTeamsInformation.forEach(({ team, points, place }) => {
     const { flag, link } = formatTeam(team);
     embed.addField(`#${place}`, `${flag} ${link} (${points} pts)\n\u200b`, true);
+  });*/
+  const str = "";
+  teamRankingWithTeamsInformation.forEach(({ team, points, place }) => {
+    const { flag, link } = formatTeam(team);
+    str += `#${place} - ${flag} ${link} (${points} pts)\n`
   });
+  embed.addField(`\u200b`, str + '\n');
 
   message.channel.send({ embed });
 };
