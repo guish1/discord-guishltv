@@ -7,9 +7,9 @@
 const parseMapResult = (mapResult) => {
   const parsed = mapResult.match(/^(\d+:\d+)/i);
 
-  if (!parsed) {
-    return { isValid: false };
-  }
+  //if (!parsed) {
+    //return { isValid: false };
+  //}
 
   const [, score] = parsed;
 
