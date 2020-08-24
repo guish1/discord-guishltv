@@ -39,11 +39,10 @@ const onRankingTeams = async (message) => {
     const { flag, link } = formatTeam(team);
     embed.addField(`#${place}`, `${flag} ${link} (${points} pts)\n\u200b`, true);
   });*/
-  const str = "";
+  let str = "";
   teamRankingWithTeamsInformation.forEach(({ team, points, place }, index) => {
     const { flag, link } = formatTeam(team);
-    //str = str + `#${place} - ${flag} ${link} (${points} pts)\n`;
-    str = "ping";
+    str += `#${place} - ${flag} ${link} (${points} pts)\n`;
   });
   console.log(str);
   embed.addField('\u200b', str + '\u200b');
