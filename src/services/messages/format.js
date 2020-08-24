@@ -116,6 +116,7 @@ const formatMatchResult = (match, team1, team2) => {
   const teamScores = parseMatchResult(match.maps);
   const eventLink = formatEventLink(match.event);
 
+  console.log(teamScores.team1);
   const team1WithScore = setBoldIf(
     `${formatMatchResultTeam(team1)} ${teamScores.team1}`,
     match.winnerTeam.id === team1.id,
