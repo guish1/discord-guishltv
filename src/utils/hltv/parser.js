@@ -5,36 +5,20 @@
  * @returns {object} Team results if valid format.
  */
 const parseMapResult = (mapResult) => {
-  /*const parsed = mapResult.match(/^(\d+:\d+)/i);
+  const parsed = mapResult.match(/^(\d+:\d+)/i);
 
   if (!parsed) {
     return { isValid: false };
   }
 
   const [, score] = parsed;
-  */
-  const r1 = mapResult.substring(0, mapResult.indexOf('\n'));
-  r1 = r1.replace(";", "");
-  r1 = r1.split(' ');
-
-  const score1 = 0;
-  const score2 = 0;
-  for (const i = 0; i < r1.length; i++) {
-    const score = r1[i].split(":");
-    if (score[0] != "") {
-      score1 = score1 + parseInt(score[0].replace("(", ""));
-      score2 = score2 + parseInt(score[1].replace(")", ""));
-    }
-  }
 
   const [team1Score, team2Score] = score.split(':');
 
   return {
     isValid: true,
-    //team1: +team1Score,
-    //team2: +team2Score,
-    team1: score1,
-    team2: score2,
+    team1: +team1Score,
+    team2: +team2Score,
   };
 };
 
