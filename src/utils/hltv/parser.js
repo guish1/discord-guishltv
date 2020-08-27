@@ -19,8 +19,8 @@ const parseMapResult = (mapResult) => {
 
   const score1 = 0;
   const score2 = 0;
-  for (var i = 0; i < r1.length; i++) {
-    var score = r1[i].split(":");
+  for (const i = 0; i < r1.length; i++) {
+    const score = r1[i].split(":");
     score1 = score1 + parseInt(score[0].replace("(", ""));
     score2 = score2 + parseInt(score[1].replace(")", ""));
   }
