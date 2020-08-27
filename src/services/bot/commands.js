@@ -35,10 +35,6 @@ const onRankingTeams = async (message) => {
       })),
   );
 
-  /*teamRankingWithTeamsInformation.forEach(({ team, points, place }) => {
-    const { flag, link } = formatTeam(team);
-    embed.addField(`#${place}`, `${flag} ${link} (${points} pts)\n\u200b`, true);
-  });*/
   let str = "";
   teamRankingWithTeamsInformation.forEach(({ team, points, place }, index) => {
     const { flag, link } = formatTeam(team);
@@ -64,7 +60,7 @@ const onResults = async (message) => {
       getTeam({ id: result.team1.id }),
       getTeam({ id: result.team2.id }),
     ]);
-
+  return JSON.stringify(match);
     return {
       match,
       team1,
