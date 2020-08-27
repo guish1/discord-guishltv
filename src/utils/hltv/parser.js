@@ -21,8 +21,10 @@ const parseMapResult = (mapResult) => {
   const score2 = 0;
   for (const i = 0; i < r1.length; i++) {
     const score = r1[i].split(":");
-    score1 = score1 + parseInt(score[0].replace("(", ""));
-    score2 = score2 + parseInt(score[1].replace(")", ""));
+    if (score[0] != "") {
+      score1 = score1 + parseInt(score[0].replace("(", ""));
+      score2 = score2 + parseInt(score[1].replace(")", ""));
+    }
   }
 
   const [team1Score, team2Score] = score.split(':');
