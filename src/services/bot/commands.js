@@ -60,7 +60,7 @@ const onResults = async (message) => {
       getTeam({ id: result.team1.id }),
       getTeam({ id: result.team2.id }),
     ]);
-  return JSON.stringify(match);
+
     return {
       match,
       team1,
