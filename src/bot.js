@@ -36,9 +36,9 @@ client.on('message', async (message) => {
 
     case 'g!ranking': {
       if (args[0] === 'team') {
-        return onRankingTeams(message);
+        return onRankingTeams(message, args);
       } if (args[0] === 'player') {
-        return onRankingPlayers(message);
+        return onRankingPlayers(message, args);
       }
       return null;
     }
