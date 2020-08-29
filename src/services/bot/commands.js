@@ -27,7 +27,7 @@ const onRankingTeams = async (message, args) => {
   const country = args[1] || '';
   const teamsRanking = await HLTV.getTeamRanking({country: country});
   const teamRankingWithTeamsInformation = await Promise.all(
-    // Get only 21 teams from ranking because of Discord limit of 25 fields for message.
+    // Get only 10 teams from ranking because of Discord limit of 25 fields for message.
     teamsRanking.slice(0, 10)
       .map(async (teamRanking) => ({
         team: await getTeam({ id: teamRanking.team.id }),
@@ -38,9 +38,8 @@ const onRankingTeams = async (message, args) => {
 
   let str = "";
   teamRankingWithTeamsInformation.forEach(({ team, points, place }, index) => {
-    str += JSON.stringify(team);
-    str += `\n`;
-    //const { flag, link } = formatTeam(team);
+    const { flag, link } = formatTeam(team);
+    str += `${link}\n`;
     //str += `#${place} - ${flag} ${link} (${points} pts)\n`;
   });
   embed.addField('\u200b', str + '\u200b');
