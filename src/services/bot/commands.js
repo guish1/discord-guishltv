@@ -38,8 +38,10 @@ const onRankingTeams = async (message, args) => {
 
   let str = "";
   teamRankingWithTeamsInformation.forEach(({ team, points, place }, index) => {
-    const { flag, link } = formatTeam(team);
-    str += `#${place} - ${flag} ${link} (${points} pts)\n`;
+    str += JSON.stringify(team);
+    str += `\n`;
+    //const { flag, link } = formatTeam(team);
+    //str += `#${place} - ${flag} ${link} (${points} pts)\n`;
   });
   embed.addField('\u200b', str + '\u200b');
 
